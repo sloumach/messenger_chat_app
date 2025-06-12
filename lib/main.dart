@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'screens/login_page.dart';
 
 void main() {
   runApp(const ChatApp());
@@ -16,19 +17,7 @@ class ChatApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const LoginPage(),
-    );
-  }
-}
-
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Connexion")),
-      body: const Center(child: Text("Page de connexion")),
+      home: const LoginPage(), // ✅ Affiche la vraie page de login
     );
   }
 }
