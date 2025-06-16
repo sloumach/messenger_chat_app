@@ -19,8 +19,6 @@ class MessageService {
     final res = await ApiHelper.get(context, Uri.parse(url));
 
     if (res.statusCode == 200) {
-      print("✅ Messages chargés avec succès");
-      print("📦 Réponse : ${res.body}");
       final List decoded = jsonDecode(res.body);
       return decoded.map((e) => MessageModel.fromJson(e)).toList();
     } else {
@@ -40,8 +38,6 @@ class MessageService {
     );
 
     if (response.statusCode != 200 && response.statusCode != 201) {
-      print("❌ Erreur HTTP: ${response.statusCode} | Body: ${response.body}");
-
       throw Exception('Erreur lors de l\'envoi du message');
     }
   }

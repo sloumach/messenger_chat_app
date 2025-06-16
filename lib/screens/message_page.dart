@@ -114,7 +114,6 @@ class _MessagePageState extends State<MessagePage> {
     await _socketService.connect(
       channel: 'private-chat.$_userId',
       onMessageReceived: (content, senderId) {
-        print("🎯 Réception message en temps réel : $content");
         setState(() {
           _messages.add(
             MessageModel(
