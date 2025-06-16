@@ -29,7 +29,6 @@ class _MessagePageState extends State<MessagePage> {
   bool _isLoading = true;
   bool _isSending = false;
   int _userId = 0;
-  int? _currentUserId;
 
   @override
   void initState() {

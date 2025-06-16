@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../models/contact_model.dart';
 import '../helpers/api_helper.dart';
 import 'package:flutter/material.dart';
