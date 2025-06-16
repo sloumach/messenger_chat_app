@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:chat_app/services/auth_service.dart';
 import 'package:chat_app/screens/register_page.dart';
 import 'package:chat_app/screens/contacts_page.dart';
+import 'package:chat_app/screens/password_reset_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -34,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
         MaterialPageRoute(builder: (_) => const ContactsPage()),
       );
     } else {
-      setState(() => error = result['message'] ?? 'Erreur de connexion');
+      setState(() => error = result['message'] ?? 'Connection error');
     }
   }
 
@@ -56,15 +57,14 @@ class _LoginPageState extends State<LoginPage> {
                 decoration: const InputDecoration(labelText: 'Email'),
                 onChanged: (val) => email = val,
                 validator: (val) =>
-                    val == null || !val.contains('@') ? 'Email invalide' : null,
+                    val == null || !val.contains('@') ? 'Wrong email' : null,
               ),
               TextFormField(
-                decoration: const InputDecoration(labelText: 'Mot de passe'),
+                decoration: const InputDecoration(labelText: 'Password'),
                 obscureText: true,
                 onChanged: (val) => password = val,
-                validator: (val) => val != null && val.length < 6
-                    ? 'Mot de passe trop court'
-                    : null,
+                validator: (val) =>
+                    val != null && val.length < 6 ? 'Short password' : null,
               ),
               const SizedBox(height: 20),
               isLoading
@@ -79,6 +79,18 @@ class _LoginPageState extends State<LoginPage> {
                   MaterialPageRoute(builder: (_) => const RegisterPage()),
                 ),
                 child: const Text("Or Register"),
+              ),
+              TextButton(
+                onPressed: () {
+                  // Navigue vers la page de réinitialisation du mot de passe
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const PasswordResetPage(),
+                    ),
+                  );
+                },
+                child: const Text("Reset your password"),
               ),
             ],
           ),

@@ -19,10 +19,20 @@ class AuthService {
       await storage.write(key: 'token', value: data['token']);
       await storage.write(key: 'user_id', value: data['id'].toString());
       return {'success': true, 'user': data['user']};
+    } else if (response.statusCode == 403) {
+      return {
+        'success': false,
+        'message': 'Please verify your email address before logging in.',
+      };
+    } else if (response.statusCode == 429) {
+      return {
+        'success': false,
+        'message': 'Too many requests. Please try again later.',
+      };
     } else {
       return {
         'success': false,
-        'message': jsonDecode(response.body)['message'],
+        'message': jsonDecode(response.body)['message'] ?? 'Connection error',
       };
     }
   }
@@ -49,6 +59,11 @@ class AuthService {
       await storage.write(key: 'token', value: data['token']);
 
       return {'success': true, 'user': data['user']};
+    } else if (response.statusCode == 429) {
+      return {
+        'success': false,
+        'message': 'Too many requests. Please try again later.',
+      };
     } else {
       return {
         'success': false,
@@ -74,5 +89,27 @@ class AuthService {
 
   Future<String?> getToken() async {
     return await storage.read(key: 'token');
+  }
+
+  Future<Map<String, dynamic>> forgotPassword(String email) async {
+    final response = await http.post(
+      Uri.parse('$baseUrl/forgot-password'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({'email': email}),
+    );
+
+    if (response.statusCode == 200) {
+      return {'success': true, 'message': jsonDecode(response.body)['status']};
+    } else if (response.statusCode == 429) {
+      return {
+        'success': false,
+        'message': 'Too many requests. Please try again later.',
+      };
+    } else {
+      return {
+        'success': false,
+        'message': jsonDecode(response.body)['message'] ?? 'Erreur',
+      };
+    }
   }
 }

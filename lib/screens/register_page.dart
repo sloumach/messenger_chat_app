@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:chat_app/services/auth_service.dart';
-import 'package:chat_app/screens/contacts_page.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -33,14 +32,28 @@ class _RegisterPageState extends State<RegisterPage> {
     setState(() => isLoading = false);
 
     if (result['success']) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (_) => const ContactsPage()),
+      // ✅ Rediriger vers login avec message
+      showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+          title: const Text("Verification required"),
+          content: Text(
+            result['message'] ??
+                'Thank you for registering! Please check your email to verify your account.',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context); // ferme le dialog
+                Navigator.pop(context); // retourne à login
+              },
+              child: const Text("OK"),
+            ),
+          ],
+        ),
       );
     } else {
-      setState(
-        () => error = result['message'] ?? 'Erreur lors de l’inscription',
-      );
+      setState(() => error = result['message'] ?? 'Error during registration');
     }
   }
 
