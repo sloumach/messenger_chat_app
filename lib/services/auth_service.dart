@@ -17,6 +17,8 @@ class AuthService {
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
       await storage.write(key: 'token', value: data['token']);
+      await storage.write(key: 'user_id', value: data['id'].toString());
+      print('User ID: ${data['id']}');
       return {'success': true, 'user': data['user']};
     } else {
       return {
@@ -46,6 +48,7 @@ class AuthService {
     if (response.statusCode == 201) {
       final data = jsonDecode(response.body);
       await storage.write(key: 'token', value: data['token']);
+
       return {'success': true, 'user': data['user']};
     } else {
       return {

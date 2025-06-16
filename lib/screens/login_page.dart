@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:chat_app/services/auth_service.dart';
 import 'package:chat_app/screens/register_page.dart';
-import 'package:chat_app/screens/chat_page.dart';
+import 'package:chat_app/screens/contacts_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -31,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
     if (result['success']) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (_) => const ChatPage()),
+        MaterialPageRoute(builder: (_) => const ContactsPage()),
       );
     } else {
       setState(() => error = result['message'] ?? 'Erreur de connexion');
@@ -41,7 +41,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Connexion')),
+      appBar: AppBar(title: const Text('Login')),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Form(
@@ -71,14 +71,14 @@ class _LoginPageState extends State<LoginPage> {
                   ? const CircularProgressIndicator()
                   : ElevatedButton(
                       onPressed: _submit,
-                      child: const Text('Se connecter'),
+                      child: const Text('Login'),
                     ),
               TextButton(
                 onPressed: () => Navigator.push(
                   context,
                   MaterialPageRoute(builder: (_) => const RegisterPage()),
                 ),
-                child: const Text("Pas encore inscrit ? S'inscrire"),
+                child: const Text("Or Register"),
               ),
             ],
           ),

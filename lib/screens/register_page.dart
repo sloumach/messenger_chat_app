@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:chat_app/services/auth_service.dart';
-import 'package:chat_app/screens/chat_page.dart';
+import 'package:chat_app/screens/contacts_page.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -35,7 +35,7 @@ class _RegisterPageState extends State<RegisterPage> {
     if (result['success']) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (_) => const ChatPage()),
+        MaterialPageRoute(builder: (_) => const ContactsPage()),
       );
     } else {
       setState(
@@ -47,7 +47,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Inscription")),
+      appBar: AppBar(title: const Text("Register")),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Form(
@@ -59,41 +59,39 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(height: 10),
               ],
               TextFormField(
-                decoration: const InputDecoration(labelText: 'Nom complet'),
+                decoration: const InputDecoration(labelText: 'Full name'),
                 onChanged: (val) => name = val,
                 validator: (val) =>
-                    val == null || val.isEmpty ? 'Nom requis' : null,
+                    val == null || val.isEmpty ? 'Full name required' : null,
               ),
               TextFormField(
                 decoration: const InputDecoration(labelText: 'Email'),
                 onChanged: (val) => email = val,
                 validator: (val) =>
-                    val == null || !val.contains('@') ? 'Email invalide' : null,
+                    val == null || !val.contains('@') ? 'Wrong email' : null,
               ),
               TextFormField(
-                decoration: const InputDecoration(labelText: 'Mot de passe'),
+                decoration: const InputDecoration(labelText: 'Password'),
                 obscureText: true,
                 onChanged: (val) => password = val,
-                validator: (val) => val != null && val.length < 6
-                    ? 'Mot de passe trop court'
-                    : null,
+                validator: (val) =>
+                    val != null && val.length < 6 ? 'Short password' : null,
               ),
               TextFormField(
                 decoration: const InputDecoration(
-                  labelText: 'Confirmer mot de passe',
+                  labelText: 'Confirm Password',
                 ),
                 obscureText: true,
                 onChanged: (val) => confirmPassword = val,
-                validator: (val) => val != password
-                    ? 'Les mots de passe ne correspondent pas'
-                    : null,
+                validator: (val) =>
+                    val != password ? 'Passwords do not match' : null,
               ),
               const SizedBox(height: 20),
               isLoading
                   ? const CircularProgressIndicator()
                   : ElevatedButton(
                       onPressed: _submit,
-                      child: const Text("S'inscrire"),
+                      child: const Text("Register"),
                     ),
             ],
           ),

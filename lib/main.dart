@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'screens/login_page.dart';
+import 'screens/register_page.dart';
+import 'screens/contacts_page.dart';
+import 'screens/invitations_page.dart';
 
 void main() {
   runApp(const ChatApp());
@@ -17,7 +20,15 @@ class ChatApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const LoginPage(), // ✅ Affiche la vraie page de login
+      // ✅ Initial screen
+      initialRoute: '/login',
+      routes: {
+        '/login': (context) => const LoginPage(),
+        '/register': (context) => const RegisterPage(),
+        /* '/contacts': (context) => ContactsPage(), */
+        '/chat': (context) => ContactsPage(), // prochaine étape
+        '/invitations': (context) => InvitationsPage(),
+      },
     );
   }
 }
