@@ -4,7 +4,7 @@ import '../helpers/api_helper.dart';
 import 'package:flutter/material.dart';
 
 class ContactService {
-  final String baseUrl = "http://10.0.2.2:8000/api";
+  final String baseUrl = "https://armessenger.abdessalem.tn/api";
 
   /// Récupère la liste des contacts
   Future<List<ContactModel>> fetchContacts(BuildContext context) async {

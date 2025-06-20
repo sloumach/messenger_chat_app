@@ -5,7 +5,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class ReverbSocketService {
   final String baseUrl =
-      "ws://10.0.2.2:8080"; // localhost pour l'émulateur Android
+      "wss://ws.abdessalem.tn"; // localhost pour l'émulateur Android
   final FlutterSecureStorage storage = const FlutterSecureStorage();
   WebSocketChannel? _channel;
 
@@ -61,7 +61,7 @@ class ReverbSocketService {
     if (token == null) return null;
 
     final response = await http.post(
-      Uri.parse('http://10.0.2.2:8000/broadcasting/auth'),
+      Uri.parse('https://armessenger.abdessalem.tn/broadcasting/auth'),
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer $token',

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:chat_app/services/auth_service.dart';
-import 'package:chat_app/screens/register_page.dart';
-import 'package:chat_app/screens/contacts_page.dart';
-import 'package:chat_app/screens/password_reset_page.dart';
+import '../services/auth_service.dart';
+import '../screens/register_page.dart';
+import '../screens/contacts_page.dart';
+import '../screens/password_reset_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

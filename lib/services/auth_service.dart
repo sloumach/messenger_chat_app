@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 
 class AuthService {
   final String baseUrl =
-      "http://10.0.2.2:8000/api"; // localhost depuis l'émulateur Android
+      "https://armessenger.abdessalem.tn/api"; // localhost depuis l'émulateur Android
   final FlutterSecureStorage storage = const FlutterSecureStorage();
 
   Future<Map<String, dynamic>> login(String email, String password) async {
