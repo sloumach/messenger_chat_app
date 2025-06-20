@@ -4,7 +4,7 @@ import '../helpers/api_helper.dart';
 import 'package:flutter/material.dart';
 
 class InvitationService {
-  final String baseUrl = "https://armessenger.abdessalem.tn/apii";
+  final String baseUrl = "https://armessenger.abdessalem.tn/api";
 
   // 🟢 Récupérer les invitations reçues
   Future<List<InvitationModel>> fetchInvitations(BuildContext context) async {

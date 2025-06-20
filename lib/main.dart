@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'screens/splash_page.dart'; // 👈 Ajouter cette ligne
+
 import 'screens/login_page.dart';
 import 'screens/register_page.dart';
 import 'screens/contacts_page.dart';
@@ -21,8 +23,9 @@ class ChatApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // ✅ Initial screen
-      initialRoute: '/login',
+      initialRoute: '/',
       routes: {
+        '/': (context) => const SplashPage(), // 👈 Splash logique
         '/login': (context) => const LoginPage(),
         '/register': (context) => const RegisterPage(),
         /* '/contacts': (context) => ContactsPage(), */

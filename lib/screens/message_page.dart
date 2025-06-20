@@ -180,6 +180,8 @@ class _MessagePageState extends State<MessagePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true, // 🔁 très important
+
       appBar: AppBar(title: Text('${widget.contact.name}')),
       body: Column(
         children: [
@@ -254,24 +256,33 @@ class _MessagePageState extends State<MessagePage> {
                     },
                   ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: _controller,
-                    decoration: const InputDecoration(
-                      hintText: 'Écrire un message...',
+
+          // 🔐 Encapsuler dans un SafeArea
+          SafeArea(
+            child: Padding(
+              padding: EdgeInsets.only(
+                left: 8,
+                right: 8,
+                top: 6,
+                bottom: MediaQuery.of(context).viewInsets.bottom + 8,
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: _controller,
+                      decoration: const InputDecoration(
+                        hintText: 'Écrire un message...',
+                      ),
                     ),
                   ),
-                ),
-                IconButton(
-                  icon: const Icon(Icons.send),
-                  onPressed: _sendMessage,
-                  color: Theme.of(context).primaryColor,
-                ),
-              ],
+                  IconButton(
+                    icon: const Icon(Icons.send),
+                    onPressed: _sendMessage,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                ],
+              ),
             ),
           ),
         ],
