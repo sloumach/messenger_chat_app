@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "430164599159",
+    "project_id": "armessenger-7e803",
+    "storage_bucket": "armessenger-7e803.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:430164599159:android:cddee3e51293e7b3cdc172",
+        "android_client_info": {
+          "package_name": "com.example.chat_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCq3zRgITvWMA9asfxIXUKBYK6KxOwaJAk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

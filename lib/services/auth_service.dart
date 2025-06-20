@@ -1,6 +1,9 @@
 import 'dart:convert';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:http/http.dart' as http;
+
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class AuthService {
   final String baseUrl =
@@ -18,6 +21,18 @@ class AuthService {
       final data = jsonDecode(response.body);
       await storage.write(key: 'token', value: data['token']);
       await storage.write(key: 'user_id', value: data['id'].toString());
+      String? fcmToken = await FirebaseMessaging.instance.getToken();
+
+      if (fcmToken != null) {
+        await http.post(
+          Uri.parse('$baseUrl/update-fcm-token'),
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ${data['token']}',
+          },
+          body: jsonEncode({'fcm_token': fcmToken}),
+        );
+      }
       return {'success': true, 'user': data['user']};
     } else if (response.statusCode == 403) {
       return {
