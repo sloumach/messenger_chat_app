@@ -43,3 +43,6 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# 👉 Fichier généré automatiquement par FlutterFire CLI à ne jamais versionner
+lib/firebase_options.dart
