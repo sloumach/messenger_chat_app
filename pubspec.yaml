@@ -1,4 +1,4 @@
-name: chat_app
+name: ARMessenger
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -32,10 +32,18 @@ dependencies:
     sdk: flutter
   http: ^0.13.6
   flutter_secure_storage: ^9.0.0
+  web_socket_channel: ^2.4.0
+  flutter_launcher_icons: ^0.13.1
+  firebase_core: ^2.32.0
+  firebase_messaging: ^14.7.10
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
+flutter_icons:
+  android: true
+  ios: false
+  image_path: "assets/icon/ar_icone.png"  # ← on crée ce fichier dans l'étape suivante
 
 dev_dependencies:
   flutter_test:
